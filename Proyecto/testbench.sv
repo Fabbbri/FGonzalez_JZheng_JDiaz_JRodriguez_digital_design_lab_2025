@@ -26,12 +26,27 @@ module testbench();
         #5; 
         clk <= 0; 
         #5;
+		  clk <= 1; 
+        #5;
+		  clk <= 0; 
+        #5;
+		  clk <= 1; 
+        #5;
+		  clk <= 0; 
+        #5;
+		  clk <= 1; 
+        #5;
+		  clk <= 0; 
+        #5;
+		  clk <= 1; 
+        #5;
+
     end
     
     // Monitor de instrucciones ejecutadas
     always @(posedge clk) begin
         if (!reset) begin
-            // Detectar solo operaciones aritméticas SUB y ADD (no MOV)
+            // Detectar solo operaciones aritméticas SUB y ADD
             if (dut.arm.RegWrite && dut.arm.Instr[27:26] == 2'b00) begin
                 case (dut.arm.Instr[24:21])
                     4'b0010: begin // SUB
@@ -42,8 +57,14 @@ module testbench();
                         arithmetic_count = arithmetic_count + 1;
                         $display("[ARITHMETIC #%0d] ADD executed, Result=%0d", arithmetic_count, dut.arm.dp.ALUResult);
                     end
+						  4'b1101: begin // MOV
+								arithmetic_count = arithmetic_count + 1;
+								$display("[ARITHMETIC #%0d] ADD executed, Result=%0d", arithmetic_count, dut.arm.dp.ALUResult);
+						  end
                 endcase
             end
+				
+				
             
             // Detectar saltos (cuando PC salta, no incrementa secuencialmente)
             if (prev_pc != 0 && dut.arm.PC != prev_pc + 4 && dut.arm.PC != 0) begin

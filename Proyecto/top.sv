@@ -8,7 +8,7 @@ module top(
 
     // instantiate processor and memories
     arm  arm  (clk, reset, PC, Instr, MemWrite, DataAdr, WriteData, ReadData);
-    imem imem (PC, Instr);
+    rom  rom  (PC, clk, Instr);
     dmem dmem (clk, MemWrite, DataAdr, WriteData, ReadData);
 
 endmodule
