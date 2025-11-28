@@ -20,7 +20,6 @@ module	alu
 			SUB:	s_ALU_Result <= i_ALU_Src1 - i_ALU_Src2;
 			AND:	s_ALU_Result <= i_ALU_Src1 & i_ALU_Src2;
 			ORR:	s_ALU_Result <= i_ALU_Src1 | i_ALU_Src2;
-			
 			default:	s_ALU_Result = 32'b0;
 		endcase
 	end
