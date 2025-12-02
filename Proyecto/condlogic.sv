@@ -10,6 +10,7 @@ module condlogic(
     logic [1:0] FlagWrite;
     logic [3:0] Flags;
     logic       CondEx;
+	 
 
     flopenr #(2) flagreg1(
         clk, reset, FlagWrite[1],

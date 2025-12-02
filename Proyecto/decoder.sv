@@ -5,7 +5,8 @@ module decoder(
     output logic [1:0] FlagW,
     output logic       PCS, RegW, MemW,
     output logic       MemtoReg, ALUSrc,
-    output logic [1:0] ImmSrc, RegSrc, ALUControl);
+    output logic [1:0] ImmSrc, RegSrc, ALUControl
+	 );
 
     logic [9:0] controls;
     logic Branch, ALUOp;
@@ -39,6 +40,8 @@ module decoder(
                 4'b0010: ALUControl = 2'b01; // SUB
                 4'b0000: ALUControl = 2'b10; // AND
                 4'b1100: ALUControl = 2'b11; // ORR
+					 4'b1010: ALUControl = 2'b01; // CMP == SUB 
+					 4'b1101: ALUControl = 2'b11; // MOV == OR
                 default: ALUControl = 2'bx;  // unimplemented
             endcase
 
