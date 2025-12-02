@@ -7,8 +7,8 @@ module top(
     logic [31:0] PC, Instr, ReadData;
 
     // instantiate processor and memories
-    arm  arm  (clk, reset, PC, Instr, MemWrite, DataAdr, WriteData, ReadData);
-    rom  rom  (PC, clk, Instr);
-    dmem dmem (clk, MemWrite, DataAdr, WriteData, ReadData);
+    arm arm  (clk, reset, PC, Instr, MemWrite, DataAdr, WriteData, ReadData);
+    rom rom  (PC, clk, Instr);
+	 ram ram (DataAdr, clk, WriteData, MemWrite, ReadData);
 
 endmodule
